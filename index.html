@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodeo — Générateur de QR Code gratuit, sans inscription ni watermark</title>
+  <meta name="description" content="Créez un QR code gratuit en 2 minutes : lien, WiFi, carte de visite, menu de restaurant. Téléchargement PNG et SVG haute définition, avec logo et couleurs. Sans inscription, sans filigrane.">
+  <link rel="canonical" href="https://kodeo.app/">
+  <meta property="og:title" content="Kodeo — Générateur de QR Code gratuit">
+  <meta property="og:description" content="QR codes personnalisés (logo, couleurs), export PNG & SVG HD. Gratuit, sans inscription.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236366f1'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white' font-family='Arial'%3E%E2%96%A6%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Google AdSense : décommenter et remplacer ca-pub-XXXX
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kodeo",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="brand"><span class="logo-mark">◧</span> Kodeo</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <nav class="nav">
+        <a href="#generateur">Générateur</a>
+        <a href="#usages">Usages</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#faq">FAQ</a>
+        <a href="#generateur" class="btn-nav">Créer mon QR code</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">100 % gratuit · sans inscription · sans filigrane</span>
+      <h1>Le générateur de <span class="grad">QR codes</span><br>simple et sans limite</h1>
+      <p class="lead">Créez un QR code personnalisé en quelques secondes : lien, WiFi, carte de visite, menu de restaurant. Téléchargez en PNG ou SVG haute définition, prêt à imprimer.</p>
+      <div class="trust">
+        <span><span class="ok">✓</span> Aucun compte requis</span>
+        <span><span class="ok">✓</span> Logo &amp; couleurs</span>
+        <span><span class="ok">✓</span> Export HD (PNG &amp; SVG)</span>
+        <span><span class="ok">✓</span> Données jamais envoyées</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GENERATEUR ============ -->
+  <section class="app" id="generateur">
+    <div class="wrap">
+      <div class="app-grid">
+
+        <!-- Colonne gauche : formulaire -->
+        <div>
+          <p class="panel-title">1. Choisissez le type</p>
+          <div class="type-tabs">
+            <button class="type-tab active" data-type="url">🔗 Lien</button>
+            <button class="type-tab" data-type="text">📝 Texte</button>
+            <button class="type-tab" data-type="wifi">📶 WiFi</button>
+            <button class="type-tab" data-type="vcard">👤 Carte de visite</button>
+            <button class="type-tab" data-type="email">✉️ Email</button>
+            <button class="type-tab" data-type="sms">💬 SMS</button>
+            <button class="type-tab" data-type="tel">📞 Téléphone</button>
+          </div>
+
+          <form id="qr-form" autocomplete="off" onsubmit="return false;">
+            <p class="panel-title">2. Saisissez le contenu</p>
+
+            <!-- URL -->
+            <div class="type-form" data-form="url">
+              <div class="field">
+                <label for="f-url">Adresse du lien</label>
+                <input type="text" id="f-url" placeholder="exemple.com ou https://exemple.com" value="https://kodeo.app">
+                <p class="hint">Idéal pour un site web, un menu en ligne, une page Google Avis, un profil Instagram…</p>
+              </div>
+            </div>
+
+            <!-- Texte -->
+            <div class="type-form" data-form="text" hidden>
+              <div class="field">
+                <label for="f-text">Texte libre</label>
+                <textarea id="f-text" placeholder="Votre message, un code promo, une note…"></textarea>
+              </div>
+            </div>
+
+            <!-- WiFi -->
+            <div class="type-form" data-form="wifi" hidden>
+              <div class="field">
+                <label for="f-wifi-ssid">Nom du réseau (SSID)</label>
+                <input type="text" id="f-wifi-ssid" placeholder="Mon-WiFi">
+              </div>
+              <div class="row2">
+                <div class="field">
+                  <label for="f-wifi-pass">Mot de passe</label>
+                  <input type="text" id="f-wifi-pass" placeholder="motdepasse">
+                </div>
+                <div class="field">
+                  <label for="f-wifi-enc">Sécurité</label>
+                  <select id="f-wifi-enc">
+                    <option value="WPA">WPA / WPA2</option>
+                    <option value="WEP">WEP</option>
+                    <option value="nopass">Aucune</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label><input type="checkbox" id="f-wifi-hidden" style="width:auto;margin-right:8px"> Réseau masqué</label>
+              </div>
+              <p class="hint">Vos invités se connectent au WiFi en scannant, sans taper le mot de passe.</p>
+            </div>
+
+            <!-- vCard -->
+            <div class="type-form" data-form="vcard" hidden>
+              <div class="row2">
+                <div class="field"><label for="f-vc-first">Prénom</label><input type="text" id="f-vc-first"></div>
+                <div class="field"><label for="f-vc-last">Nom</label><input type="text" id="f-vc-last"></div>
+              </div>
+              <div class="row2">
+                <div class="field"><label for="f-vc-org">Entreprise</label><input type="text" id="f-vc-org"></div>
+                <div class="field"><label for="f-vc-title">Fonction</label><input type="text" id="f-vc-title"></div>
+              </div>
+              <div class="row2">
+                <div class="field"><label for="f-vc-tel">Téléphone</label><input type="text" id="f-vc-tel"></div>
+                <div class="field"><label for="f-vc-email">Email</label><input type="text" id="f-vc-email"></div>
+              </div>
+              <div class="field"><label for="f-vc-url">Site web</label><input type="text" id="f-vc-url" placeholder="https://"></div>
+              <p class="hint">Scanné, ce QR code ajoute directement votre contact au téléphone.</p>
+            </div>
+
+            <!-- Email -->
+            <div class="type-form" data-form="email" hidden>
+              <div class="field"><label for="f-em-to">Destinataire</label><input type="text" id="f-em-to" placeholder="contact@exemple.com"></div>
+              <div class="field"><label for="f-em-subject">Objet</label><input type="text" id="f-em-subject"></div>
+              <div class="field"><label for="f-em-body">Message</label><textarea id="f-em-body"></textarea></div>
+            </div>
+
+            <!-- SMS -->
+            <div class="type-form" data-form="sms" hidden>
+              <div class="field"><label for="f-sms-num">Numéro</label><input type="text" id="f-sms-num" placeholder="+33 6 12 34 56 78"></div>
+              <div class="field"><label for="f-sms-msg">Message pré-rempli</label><textarea id="f-sms-msg"></textarea></div>
+            </div>
+
+            <!-- Tel -->
+            <div class="type-form" data-form="tel" hidden>
+              <div class="field"><label for="f-tel-num">Numéro de téléphone</label><input type="text" id="f-tel-num" placeholder="+33 6 12 34 56 78"></div>
+              <p class="hint">Un scan lance l'appel — parfait pour une carte de visite ou une vitrine.</p>
+            </div>
+
+            <!-- Options -->
+            <div class="options">
+              <p class="panel-title">3. Personnalisez</p>
+              <div class="opt-grid">
+                <div class="field color-field">
+                  <input type="color" id="opt-fg" value="#12141c">
+                  <div><label style="margin:0">Couleur</label><div class="val" id="opt-fg-val">#12141C</div></div>
+                </div>
+                <div class="field color-field">
+                  <input type="color" id="opt-bg" value="#ffffff">
+                  <div><label style="margin:0">Fond</label><div class="val" id="opt-bg-val">#FFFFFF</div></div>
+                </div>
+                <div class="field">
+                  <label for="opt-ecl">Correction d'erreur</label>
+                  <select id="opt-ecl">
+                    <option value="L">Faible (7%)</option>
+                    <option value="M" selected>Moyenne (15%)</option>
+                    <option value="Q">Élevée (25%)</option>
+                    <option value="H">Maximale (30%) — conseillé avec logo</option>
+                  </select>
+                </div>
+                <div class="field range-field">
+                  <label>Marge : <output id="opt-margin-out">2</output> modules</label>
+                  <input type="range" id="opt-margin" min="0" max="8" value="2">
+                </div>
+              </div>
+              <div class="field">
+                <label>Logo au centre (optionnel)</label>
+                <div class="logo-drop" id="logo-drop">Cliquez pour ajouter un logo au centre</div>
+                <input type="file" id="opt-logo" accept="image/*" hidden>
+                <button type="button" id="logo-remove" class="btn btn-ghost" style="margin-top:8px;padding:6px 12px;font-size:13px" hidden>Retirer le logo</button>
+                <p class="hint">Avec un logo, choisissez une correction d'erreur « Élevée » ou « Maximale ».</p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Colonne droite : aperçu -->
+        <div class="preview">
+          <p class="panel-title">Aperçu en direct</p>
+          <div class="preview-card">
+            <div class="qr-holder"><canvas id="qr-canvas" width="1000" height="1000"></canvas></div>
+            <div class="dl-row">
+              <button class="btn btn-primary" id="dl-png" data-dl>⬇ PNG</button>
+              <button class="btn btn-ghost" id="dl-png-hd" data-dl>⬇ PNG HD</button>
+            </div>
+            <button class="btn btn-ghost btn-block" id="dl-svg" data-dl style="margin-top:10px">⬇ SVG vectoriel (impression)</button>
+            <p class="preview-note" id="preview-note">Remplissez le formulaire pour générer votre QR code.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AD SLOT ============ -->
+  <div class="ad-slot">
+    <div class="ad-inner">Emplacement publicitaire (Google AdSense)</div>
+  </div>
+
+  <!-- ============ USAGES / NICHES ============ -->
+  <section class="block" id="usages">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Un QR code pour chaque besoin</h2>
+        <p>Choisissez votre usage, on s'occupe du format technique.</p>
+      </div>
+      <div class="usecases">
+        <a class="usecase" href="qr-menu-restaurant.html"><div class="emoji">🍽️</div><h3>Menu de restaurant</h3><p>Affichez votre carte sans contact, mise à jour quand vous voulez.</p></a>
+        <a class="usecase" href="?type=url#generateur"><div class="emoji">⭐</div><h3>Avis Google</h3><p>Récoltez plus d'avis clients d'un simple scan en caisse.</p></a>
+        <a class="usecase" href="?type=vcard#generateur"><div class="emoji">👤</div><h3>Carte de visite</h3><p>Partagez vos coordonnées, ajoutées en un scan au téléphone.</p></a>
+        <a class="usecase" href="?type=wifi#generateur"><div class="emoji">📶</div><h3>WiFi invités</h3><p>Connexion instantanée, sans dicter le mot de passe.</p></a>
+        <a class="usecase" href="?type=url#generateur"><div class="emoji">📱</div><h3>Réseaux sociaux</h3><p>Renvoyez vers Instagram, TikTok ou votre Linktree.</p></a>
+        <a class="usecase" href="?type=url#generateur"><div class="emoji">🎟️</div><h3>Événement &amp; billet</h3><p>Lien d'inscription, plan d'accès, billetterie.</p></a>
+        <a class="usecase" href="?type=tel#generateur"><div class="emoji">📞</div><h3>Appel direct</h3><p>Un scan lance l'appel vers votre numéro.</p></a>
+        <a class="usecase" href="?type=text#generateur"><div class="emoji">🏷️</div><h3>Produit &amp; étiquette</h3><p>Notice, mode d'emploi ou code promo sur l'emballage.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="block alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Pourquoi Kodeo ?</h2>
+        <p>Un générateur pensé pour aller vite et rester net à l'impression.</p>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="ico">⚡</div><h3>Instantané</h3><p>Le QR code se génère en direct pendant que vous tapez. Aucune attente, aucune inscription.</p></div>
+        <div class="card"><div class="ico">🖨️</div><h3>Qualité impression</h3><p>Export SVG vectoriel et PNG jusqu'à 2000 px : net sur une carte de visite comme sur une affiche 4×3.</p></div>
+        <div class="card"><div class="ico">🎨</div><h3>À vos couleurs</h3><p>Couleurs personnalisées et logo au centre pour un QR code à l'image de votre marque.</p></div>
+        <div class="card"><div class="ico">🔒</div><h3>Confidentiel</h3><p>Tout est généré dans votre navigateur. Vos données ne quittent jamais votre appareil.</p></div>
+        <div class="card"><div class="ico">♾️</div><h3>Sans filigrane</h3><p>Aucun watermark, aucune limite de nombre. Vos QR codes vous appartiennent.</p></div>
+        <div class="card"><div class="ico">📶</div><h3>Tous les formats</h3><p>Lien, WiFi, vCard, email, SMS, téléphone… le bon format encodé automatiquement.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TARIFS ============ -->
+  <section class="block" id="tarifs">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Tarifs simples</h2>
+        <p>Le générateur est gratuit pour toujours. Passez à Pro pour les QR codes dynamiques et les statistiques.</p>
+      </div>
+      <div class="pricing">
+        <div class="plan">
+          <h3>Gratuit</h3>
+          <div class="price">0 €</div>
+          <ul>
+            <li>QR codes illimités</li>
+            <li>Tous les types (lien, WiFi, vCard…)</li>
+            <li>Couleurs &amp; logo</li>
+            <li>Export PNG &amp; SVG HD</li>
+            <li>Sans filigrane</li>
+            <li class="no">QR codes dynamiques</li>
+            <li class="no">Statistiques de scan</li>
+          </ul>
+          <a href="#generateur" class="btn btn-ghost btn-block">Commencer</a>
+        </div>
+        <div class="plan featured">
+          <span class="badge">Le plus populaire</span>
+          <h3>Pro</h3>
+          <div class="price">9 €<small> / mois</small></div>
+          <ul>
+            <li>Tout le plan Gratuit</li>
+            <li><strong>QR codes dynamiques</strong> (URL modifiable après impression)</li>
+            <li><strong>Statistiques de scan</strong> (nombre, ville, appareil)</li>
+            <li>Modèles de niche (menu, avis Google…)</li>
+            <li>Historique de vos QR codes</li>
+          </ul>
+          <a href="#generateur" class="btn btn-primary btn-block" data-plan="pro">Bientôt disponible</a>
+        </div>
+        <div class="plan">
+          <h3>Business</h3>
+          <div class="price">29 €<small> / mois</small></div>
+          <ul>
+            <li>Tout le plan Pro</li>
+            <li>Volume élevé de QR dynamiques</li>
+            <li>Export des statistiques (CSV)</li>
+            <li>Sous-comptes équipe</li>
+            <li>Support prioritaire</li>
+          </ul>
+          <a href="#generateur" class="btn btn-ghost btn-block" data-plan="business">Bientôt disponible</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="block alt" id="faq">
+    <div class="wrap">
+      <div class="section-head"><h2>Questions fréquentes</h2></div>
+      <div class="faq">
+        <details open><summary>Le générateur est-il vraiment gratuit ?</summary><p>Oui. La création et le téléchargement de QR codes statiques sont 100 % gratuits, sans inscription et sans filigrane. Nous nous finançons via la publicité et l'offre Pro (QR dynamiques et statistiques).</p></details>
+        <details><summary>Mes QR codes expirent-ils ?</summary><p>Non. Un QR code statique (celui du plan gratuit) fonctionne pour toujours : le contenu est encodé directement dans l'image. Seuls les QR dynamiques (Pro) dépendent de nos serveurs de redirection.</p></details>
+        <details><summary>Quelle est la différence entre QR statique et dynamique ?</summary><p>Un QR <strong>statique</strong> contient directement l'information (le lien, le texte…) : rapide et gratuit, mais non modifiable une fois imprimé. Un QR <strong>dynamique</strong> pointe vers une redirection que vous contrôlez : vous pouvez changer la destination après impression et suivre les scans. C'est l'offre Pro.</p></details>
+        <details><summary>Quel format télécharger pour l'impression ?</summary><p>Choisissez le <strong>SVG</strong> : c'est un format vectoriel qui reste parfaitement net à n'importe quelle taille, idéal pour un imprimeur. Le PNG HD (2000 px) convient aussi pour la plupart des impressions.</p></details>
+        <details><summary>Puis-je mettre mon logo au centre ?</summary><p>Oui, ajoutez votre logo depuis les options. Pensez à régler la correction d'erreur sur « Élevée » ou « Maximale » pour que le QR reste lisible malgré le logo.</p></details>
+        <details><summary>Mes données sont-elles envoyées quelque part ?</summary><p>Non. Les QR codes gratuits sont générés entièrement dans votre navigateur : aucune donnée saisie n'est transmise à nos serveurs.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Créez votre QR code maintenant</h2>
+      <p>Gratuit, sans inscription, prêt à imprimer en 2 minutes.</p>
+      <a href="#generateur" class="btn">Générer mon QR code →</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="brand"><span class="logo-mark">◧</span> Kodeo</div>
+          <p style="font-size:14px;max-width:280px">Le générateur de QR codes gratuit, rapide et sans filigrane. Créé pour les commerçants, indépendants et entreprises.</p>
+        </div>
+        <div>
+          <h4>Produit</h4>
+          <ul>
+            <li><a href="#generateur">Générateur</a></li>
+            <li><a href="#tarifs">Tarifs</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Usages</h4>
+          <ul>
+            <li><a href="qr-menu-restaurant.html">Menu restaurant</a></li>
+            <li><a href="?type=vcard#generateur">Carte de visite</a></li>
+            <li><a href="?type=wifi#generateur">QR code WiFi</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Confidentialité</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Kodeo. Tous droits réservés.</span>
+        <span>Fait avec ◧ en France</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="assets/js/qrcode.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
