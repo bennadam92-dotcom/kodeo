@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Démo Pro — QR codes dynamiques &amp; statistiques | Kodeo</title>
+  <meta name="description" content="Démo de l'offre Kodeo Pro : créez des QR codes dynamiques (destination modifiable après impression), suivez les scans, et testez le passage à Pro.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236366f1'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white' font-family='Arial'%3E%E2%96%A6%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand"><span class="logo-mark">◧</span> Kodeo</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <nav class="nav">
+        <a href="index.html#generateur">Générateur</a>
+        <a href="index.html#tarifs">Tarifs</a>
+        <a href="index.html#generateur" class="btn-nav">Générateur gratuit</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" style="padding-bottom:10px">
+    <div class="wrap">
+      <span class="demo-badge">DÉMO · aucun paiement réel · données réinitialisées au redémarrage</span>
+      <h1 style="margin-top:16px">QR codes <span class="grad">dynamiques</span> — l'offre Pro</h1>
+      <p class="lead">Créez un QR code dont vous pouvez <strong>changer la destination après impression</strong>, et suivez les scans en temps réel. Testez aussi le passage à Pro (paiement simulé).</p>
+    </div>
+  </section>
+
+  <section class="app" style="padding-top:16px">
+    <div class="wrap">
+
+      <div id="api-warn" hidden style="background:#fdecea;border:1px solid #f5c6cb;color:#a12622;border-radius:10px;padding:14px 16px;margin-bottom:18px">
+        ⏳ Le backend démo ne répond pas encore. Sur Render, un service gratuit se « réveille » en ~30 s après une période d'inactivité — réessayez dans un instant.
+      </div>
+      <div id="upgraded-banner" hidden style="background:#e7f6ec;border:1px solid #a3d9b1;color:#1e7a3d;border-radius:10px;padding:14px 16px;margin-bottom:18px">
+        ✅ Paiement démo accepté — votre compte est passé en <strong>Pro</strong> ! Les statistiques sont maintenant débloquées.
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:18px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span>Votre plan :</span> <span id="plan-pill" class="plan-pill free">Plan Gratuit</span>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button id="upgrade-cta" class="btn btn-primary" style="padding:9px 16px">✨ Passer à Pro (démo) — 9 €/mois</button>
+          <button id="reset-plan" class="btn btn-ghost" style="padding:9px 16px" hidden>↩ Revenir au gratuit</button>
+        </div>
+      </div>
+
+      <div class="dash">
+        <!-- Création -->
+        <div class="box">
+          <h3>➕ Créer un QR dynamique</h3>
+          <div class="field">
+            <label for="f-label">Nom (pour vous)</label>
+            <input type="text" id="f-label" placeholder="Ex : Menu du midi, Affiche vitrine…">
+          </div>
+          <div class="field">
+            <label for="f-target">Destination (URL)</label>
+            <input type="text" id="f-target" placeholder="https://mon-site.fr/menu">
+          </div>
+          <button id="btn-create" class="btn btn-primary btn-block">Créer le QR dynamique</button>
+          <p class="hint" id="create-msg" style="color:#c0392b;min-height:18px"></p>
+          <div class="demo-note">
+            💡 Le QR imprimé encode une adresse de <strong>redirection Kodeo</strong> (ex. <code>/r/ab3x9k</code>). En changeant la destination, le même QR pointe ailleurs — sans le réimprimer. C'est ce qui justifie l'abonnement Pro.
+          </div>
+        </div>
+
+        <!-- Comment ça marche -->
+        <div class="box">
+          <h3>Comment tester la démo</h3>
+          <ol style="padding-left:18px;color:var(--text-soft);font-size:15px;line-height:1.9">
+            <li>Créez un QR dynamique avec une destination.</li>
+            <li>Cliquez <strong>↗ Tester</strong> : vous êtes redirigé vers la destination.</li>
+            <li>Cliquez <strong>✏️ Changer la destination</strong> : le même QR pointe ailleurs.</li>
+            <li>Cliquez <strong>📊 Statistiques</strong> : elles sont <strong>verrouillées</strong> en plan gratuit.</li>
+            <li>Cliquez <strong>Passer à Pro (démo)</strong> : checkout simulé, puis stats débloquées.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Liste des QR -->
+      <div class="box" style="margin-top:24px">
+        <h3>Mes QR codes dynamiques</h3>
+        <ul class="qr-list" id="qr-list"></ul>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-bottom" style="border:0">
+        <span>© <span id="year"></span> Kodeo — démo de l'offre Pro.</span>
+        <span><a href="index.html">Retour à l'accueil</a> · <a href="index.html#tarifs">Tarifs</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="assets/js/qrcode.js"></script>
+  <script src="assets/js/pro.js"></script>
+</body>
+</html>

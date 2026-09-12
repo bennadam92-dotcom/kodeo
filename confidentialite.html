@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de confidentialité | Kodeo</title>
+  <meta name="description" content="Politique de confidentialité du site Kodeo, générateur de QR codes.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236366f1'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white' font-family='Arial'%3E%E2%96%A6%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand"><span class="logo-mark">◧</span> Kodeo</a>
+      <nav class="nav">
+        <a href="index.html#generateur">Générateur</a>
+        <a href="index.html#tarifs">Tarifs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="legal">
+      <h1>Politique de confidentialité</h1>
+      <p class="updated">Dernière mise à jour : <span id="today"></span></p>
+
+      <p><span class="todo">À COMPLÉTER</span> Ce modèle doit être relu et adapté à votre situation réelle avant mise en production. Il ne constitue pas un conseil juridique.</p>
+
+      <h2>1. Génération des QR codes</h2>
+      <p>Les QR codes créés via le générateur gratuit sont produits <strong>entièrement dans votre navigateur</strong>. Les données que vous saisissez (liens, texte, identifiants WiFi, coordonnées de contact, etc.) <strong>ne sont ni transmises ni stockées</strong> sur nos serveurs.</p>
+
+      <h2>2. Données collectées</h2>
+      <p>Dans le cadre de la simple consultation du Site, nous pouvons collecter des données techniques anonymes (statistiques de fréquentation). Si vous utilisez une fonctionnalité nécessitant un compte (offre Pro), nous collectons les informations nécessaires à la fourniture du service (email, données de facturation traitées par notre prestataire de paiement).</p>
+
+      <h2>3. Publicité (Google AdSense)</h2>
+      <p>Le Site peut afficher des publicités diffusées par Google AdSense. Google et ses partenaires peuvent utiliser des cookies pour proposer des annonces basées sur vos visites. Vous pouvez gérer vos préférences publicitaires depuis les <a href="https://adssettings.google.com" target="_blank" rel="noopener">paramètres des annonces Google</a>.</p>
+
+      <h2>4. Statistiques de scan (offre Pro)</h2>
+      <p>Pour les QR codes dynamiques (offre Pro), chaque scan peut être enregistré à des fins statistiques (date, type d'appareil, pays/ville dérivés de l'adresse IP). <strong>L'adresse IP brute n'est pas conservée.</strong></p>
+
+      <h2>5. Cookies</h2>
+      <p>Le Site utilise des cookies strictement nécessaires à son fonctionnement, et, le cas échéant, des cookies publicitaires (voir section 3) soumis à votre consentement.</p>
+
+      <h2>6. Vos droits</h2>
+      <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition sur vos données. Pour l'exercer, contactez-nous via la page <a href="contact.html">Contact</a>.</p>
+
+      <h2>7. Prestataires</h2>
+      <ul>
+        <li>Hébergement : Render, Inc. (États-Unis)</li>
+        <li>Publicité : Google AdSense</li>
+        <li>Paiement (offre Pro) : [Stripe, le cas échéant]</li>
+      </ul>
+
+      <a class="back" href="index.html">← Retour à l'accueil</a>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-bottom" style="border:0">
+        <span>© <span id="year"></span> Kodeo. Tous droits réservés.</span>
+        <span><a href="mentions-legales.html">Mentions légales</a> · <a href="contact.html">Contact</a></span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("today").textContent = new Date().toLocaleDateString("fr-FR");
+  </script>
+</body>
+</html>

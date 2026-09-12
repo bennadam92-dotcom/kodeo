@@ -193,6 +193,41 @@ section.block.alt { background: var(--bg-soft); border-top: 1px solid var(--bord
 .site-footer a:hover { color: #fff; }
 .footer-bottom { border-top: 1px solid #23262f; padding-top: 20px; font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
 
+/* ---------- Pages légales / contenu ---------- */
+.legal { max-width: 760px; margin: 0 auto; padding: 48px 0 60px; }
+.legal h1 { font-size: clamp(28px, 4vw, 38px); letter-spacing: -.02em; margin: 0 0 8px; }
+.legal .updated { color: var(--text-soft); font-size: 14px; margin: 0 0 32px; }
+.legal h2 { font-size: 20px; margin: 32px 0 10px; }
+.legal p, .legal li { color: var(--text); font-size: 15.5px; }
+.legal ul { padding-left: 20px; }
+.legal .todo { background: #fff8e1; border: 1px solid #f2d98a; color: #7a5b00; border-radius: 8px; padding: 2px 8px; font-size: 13px; font-weight: 600; }
+.legal .back { display: inline-block; margin-top: 32px; }
+
+/* ---------- Dashboard démo (Pro) ---------- */
+.demo-badge { display: inline-block; background: #fff3cd; color: #7a5b00; border: 1px solid #f2d98a; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.dash { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.dash .box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+.dash .box h3 { margin: 0 0 14px; font-size: 18px; }
+.plan-pill { font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+.plan-pill.free { background: var(--bg-soft); color: var(--text-soft); border: 1px solid var(--border); }
+.plan-pill.pro { background: linear-gradient(120deg, var(--primary), var(--accent)); color: #fff; }
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0; }
+.stat { background: var(--bg-soft); border-radius: 10px; padding: 14px; text-align: center; }
+.stat .num { font-size: 26px; font-weight: 800; color: var(--primary-dark); }
+.stat .lbl { font-size: 12px; color: var(--text-soft); }
+.qr-list { list-style: none; padding: 0; margin: 0; }
+.qr-list li { border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.qr-list .meta { font-size: 13px; color: var(--text-soft); word-break: break-all; }
+.locked { position: relative; }
+.locked::after { content: "🔒 Réservé au plan Pro"; position: absolute; inset: 0; background: rgba(246,247,251,.92); display: grid; place-items: center; font-weight: 700; color: var(--text-soft); border-radius: 10px; }
+.modal-backdrop { position: fixed; inset: 0; background: rgba(15,17,23,.5); display: grid; place-items: center; z-index: 100; padding: 20px; }
+.modal { background: #fff; border-radius: 16px; max-width: 420px; width: 100%; padding: 28px; box-shadow: var(--shadow-lg); }
+.modal h3 { margin: 0 0 6px; }
+.modal .price-big { font-size: 34px; font-weight: 800; margin: 8px 0; }
+.demo-note { font-size: 13px; color: var(--text-soft); background: #fff8e1; border: 1px solid #f2d98a; border-radius: 8px; padding: 8px 12px; margin: 14px 0; }
+
+@media (max-width: 700px) { .dash { grid-template-columns: 1fr; } }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .app-grid { grid-template-columns: 1fr; }

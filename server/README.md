@@ -1,68 +1,48 @@
-# Kodeo — Backend (Phase 2 : QR codes dynamiques)
+# Kodeo — Backend démo (QR dynamiques + Stripe simulé)
 
-> ⚠️ Cette partie n'est **pas** encore active. C'est le plan et le squelette de l'offre
-> Pro payante. Elle nécessite un hébergement dynamique (Vercel/Netlify Functions,
-> Cloudflare Workers…) et une base de données — donc **pas** GitHub Pages seul.
+Backend **Express** qui fait tourner la démo de l'offre Pro :
 
-## Le principe (là où est l'argent)
+- **QR codes dynamiques** : `/r/:id` redirige (302) vers une URL cible **modifiable après impression**.
+- **Statistiques de scan** : chaque scan est logué (date, appareil, pays approximatif — jamais l'IP brute), agrégé sur 7 jours. Réservé au plan Pro (gating démontré côté serveur, HTTP 402 si gratuit).
+- **Checkout Stripe SIMULÉ** : page `/demo-checkout` qui reproduit l'UX de Stripe Checkout et passe le compte en Pro. **Aucune clé Stripe, aucun débit réel.**
 
-Un QR **dynamique** n'encode pas l'URL finale, mais une URL de redirection que **nous**
-contrôlons :
+> ⚠️ **Démo** : stockage **en mémoire** (réinitialisé à chaque redémarrage du service). Les points d'intégration Stripe réels sont marqués `TODO STRIPE` dans `index.js`.
 
+## Lancer en local
+
+```bash
+cd server
+npm install
+npm start        # http://localhost:3000
 ```
-QR imprimé  →  https://kodeo.app/r/aB3xK9  →  (redirection)  →  URL cible du client
-```
-
-Deux avantages qui justifient l'abonnement :
-
-1. **Modifiable après impression** — le client change la destination sans réimprimer.
-2. **Statistiques de scan** — on logge chaque scan (date, ville via IP, appareil).
-
-## Modèle de données minimal
-
-Collection `qrcodes` :
-
-| champ         | type      | description                                  |
-|---------------|-----------|----------------------------------------------|
-| `id`          | string    | slug court dans l'URL (`/r/:id`)             |
-| `owner`       | string    | id utilisateur (Stripe customer)             |
-| `target_url`  | string    | destination actuelle (modifiable)            |
-| `label`       | string    | nom donné par le client                      |
-| `created_at`  | datetime  |                                              |
-| `active`      | bool      | désactivable                                 |
-
-Collection `scans` :
-
-| champ       | type     | description                    |
-|-------------|----------|--------------------------------|
-| `qr_id`     | string   | référence vers `qrcodes.id`    |
-| `ts`        | datetime | horodatage du scan             |
-| `country`   | string   | dérivé de l'IP (pas d'IP brute stockée) |
-| `city`      | string   |                                |
-| `device`    | string   | mobile / desktop (user-agent)  |
-
-> RGPD : ne pas stocker l'IP brute, seulement le pays/la ville dérivés.
 
 ## Endpoints
 
-- `GET  /r/:id`            → logge le scan puis redirige (302) vers `target_url`
-- `POST /api/qr`           → crée un QR dynamique (auth requise)
-- `PATCH /api/qr/:id`      → change la destination
-- `GET  /api/qr/:id/stats` → statistiques de scan
-- `POST /api/stripe/webhook` → active/désactive l'abonnement Pro
+| Méthode | Route | Rôle |
+|---|---|---|
+| GET | `/health` | ping |
+| GET | `/api/account` | plan courant (`free`/`pro`) |
+| GET | `/api/qr` | liste des QR dynamiques de la session |
+| POST | `/api/qr` | crée un QR dynamique (`{label, target_url}`) |
+| PATCH | `/api/qr/:id` | change la destination (cœur du dynamique) |
+| DELETE | `/api/qr/:id` | supprime |
+| GET | `/api/qr/:id/stats` | stats (402 si plan gratuit) |
+| POST | `/api/checkout` | démarre le checkout démo |
+| POST | `/api/checkout/confirm` | valide le « paiement » démo → Pro |
+| GET | `/r/:id` | **redirection dynamique** + log du scan |
+| GET | `/demo-checkout` | page de paiement simulée |
 
-## Stack suggérée (simple, solo)
+La session est identifiée par l'en-tête `X-Demo-Session` (généré et stocké côté client dans `localStorage`).
 
-- **Hébergement** : Vercel (functions) ou Cloudflare Workers + KV/D1
-- **Base** : Postgres (Supabase/Neon) ou Cloudflare D1/KV
-- **Paiement** : Stripe Checkout + webhook (abonnement 9 €/mois)
-- **Auth** : lien magique par email ou Supabase Auth
+## Déploiement (Render — Web Service)
 
-## Roadmap MVP payant
+- Root Directory : `server`
+- Build Command : `npm install`
+- Start Command : `node index.js`
+- Render fournit `PORT` et `RENDER_EXTERNAL_URL` automatiquement.
 
-1. `GET /r/:id` + table `qrcodes` (redirection dynamique) ← cœur du produit
-2. Auth + `POST /api/qr` depuis le générateur (bouton « rendre dynamique »)
-3. Logging des scans + page de statistiques
-4. Stripe Checkout + gating de la fonctionnalité dynamique
+## Vers la production
 
-`redirect.example.js` montre le squelette de la redirection.
+1. Remplacer le store mémoire par **Postgres** (le compte Render a déjà `cvfacile-db`).
+2. Brancher **Stripe** (mode test d'abord) aux emplacements `TODO STRIPE` : `checkout.sessions.create` + webhook `checkout.session.completed`.
+3. Ajouter une authentification (email magic link) pour rattacher les QR à un vrai compte.

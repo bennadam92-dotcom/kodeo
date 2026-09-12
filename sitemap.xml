@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Remplacer le domaine par votre domaine définitif une fois le nom de domaine branché. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://kodeo-nqlm.onrender.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://kodeo-nqlm.onrender.com/qr-menu-restaurant.html</loc><priority>0.8</priority></url>
+  <url><loc>https://kodeo-nqlm.onrender.com/qr-avis-google.html</loc><priority>0.8</priority></url>
+  <url><loc>https://kodeo-nqlm.onrender.com/qr-carte-de-visite.html</loc><priority>0.8</priority></url>
+  <url><loc>https://kodeo-nqlm.onrender.com/qr-wifi.html</loc><priority>0.8</priority></url>
+</urlset>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentions légales | Kodeo</title>
+  <meta name="description" content="Mentions légales du site Kodeo, générateur de QR codes.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236366f1'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white' font-family='Arial'%3E%E2%96%A6%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand"><span class="logo-mark">◧</span> Kodeo</a>
+      <nav class="nav">
+        <a href="index.html#generateur">Générateur</a>
+        <a href="index.html#tarifs">Tarifs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="legal">
+      <h1>Mentions légales</h1>
+      <p class="updated">Dernière mise à jour : <span id="today"></span></p>
+
+      <p><span class="todo">À COMPLÉTER</span> Les éléments entre crochets doivent être renseignés avant la mise en production.</p>
+
+      <h2>Éditeur du site</h2>
+      <p>
+        Le site <strong>Kodeo</strong> (ci-après « le Site ») est édité par :<br>
+        [Nom et prénom ou raison sociale]<br>
+        Statut : [auto-entrepreneur / société / particulier]<br>
+        SIRET : [numéro SIRET, le cas échéant]<br>
+        Adresse : [adresse postale]<br>
+        Email : [votre-email@exemple.com]
+      </p>
+
+      <h2>Directeur de la publication</h2>
+      <p>[Nom et prénom du directeur de la publication]</p>
+
+      <h2>Hébergement</h2>
+      <p>
+        Le Site est hébergé par :<br>
+        Render, Inc.<br>
+        525 Brannan Street, Suite 300, San Francisco, CA 94107, États-Unis<br>
+        <a href="https://render.com" target="_blank" rel="noopener">render.com</a>
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>L'ensemble des contenus présents sur le Site (textes, mise en page, éléments graphiques) est la propriété de l'éditeur, sauf mention contraire. Toute reproduction non autorisée est interdite. Les QR codes générés par les utilisateurs à partir de leurs propres données leur appartiennent.</p>
+
+      <h2>Responsabilité</h2>
+      <p>Le Site fournit un outil de génération de QR codes fonctionnant dans le navigateur de l'utilisateur. L'éditeur ne saurait être tenu responsable du contenu encodé par l'utilisateur dans ses QR codes, ni de l'usage qui en est fait.</p>
+
+      <h2>Liens hypertextes</h2>
+      <p>Le Site peut contenir des liens vers des sites tiers. L'éditeur n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
+
+      <a class="back" href="index.html">← Retour à l'accueil</a>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-bottom" style="border:0">
+        <span>© <span id="year"></span> Kodeo. Tous droits réservés.</span>
+        <span><a href="confidentialite.html">Confidentialité</a> · <a href="contact.html">Contact</a></span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("today").textContent = new Date().toLocaleDateString("fr-FR");
+  </script>
+</body>
+</html>
