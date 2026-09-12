@@ -4,7 +4,7 @@
   "use strict";
 
   // URL du backend démo (Render). Mise à jour après déploiement du service.
-  var API_BASE = "https://kodeo-api.onrender.com";
+  var API_BASE = "https://kodeo-api-aqxd.onrender.com";
 
   var $ = function (s, c) { return (c || document).querySelector(s); };
 
